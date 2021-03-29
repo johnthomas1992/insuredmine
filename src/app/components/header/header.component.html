@@ -1,1 +1,60 @@
-<p>header works!</p>
+<div class="header-wrapper">
+    <div class="logo ">
+        <img src="../../../assets/icons/monster-color.png"/>
+        <span>THE MEDIA COMPANY</span>
+    </div>
+
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink [routerLink]="['/gallery']" routerLinkActive="router-link-active" >Gallery</a>
+        </li>
+        <li [ngbNavItem]="3">
+          <a ngbNavLink [routerLink]="['/about']" routerLinkActive="router-link-active" >About Us</a>
+         </li>
+         <li >
+            <button type="button" class="btn btn-primary" (click)="open(content)">Sign In</button>
+           </li>
+      </ul>
+</div>
+  
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Welcome back, Login In</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  
+<div *ngIf="isInvalidUser" class="wrong-credentials">
+    Invalid credentials
+</div>
+    <div class="modal-body">
+            <form class="login-form" [formGroup]="loginForm">
+            <mat-form-field class="login-form-full-width">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput  formControlName="userid" [errorStateMatcher]="matcher"
+                       placeholder="Username">
+                        <mat-error *ngIf="loginForm.controls.userid.hasError('required')">
+                  Username is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="login-form-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput  formControlName="password" [errorStateMatcher]="matcher"
+                       placeholder="Password">
+                        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                            Password is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+          </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="loginUser()">Sign In</button>
+    </div>
+  </ng-template>
+
+
+

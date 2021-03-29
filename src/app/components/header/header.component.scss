@@ -1,0 +1,33 @@
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 6px;
+    .logo {
+        float: left;
+        img {
+            width: 60px;
+        }
+        span{
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+       
+    }
+    .nav-tabs {
+        border-bottom: none;
+        a {
+            color: #e2dedecf;
+        }
+        .nav-link.active {
+            border-color: transparent;
+            color: #fff;
+            background-color: transparent;
+            font-weight:bold;
+        }
+    }
+
+
+}
