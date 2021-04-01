@@ -19,12 +19,17 @@ export class HeaderComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private loginService: LoginService,
-    private router: Router) { }
-
+    private router: Router) {
+      this.router.events.subscribe(route => {
+        this.isHometUrl = this.router.url.includes('home') ? true : false;
+      });
+    }
+    isHometUrl = true;
     isInvalidUser = false;
-    loggedInUser!: UserDetails;
+    loggedInUser!: UserDetails | null;
     active = 1;
     closeResult = '';
+    isUserLoggedIn = false;
     matcher = new LoginErrorStateMatcher();
 
     loginForm = new FormGroup({
@@ -54,6 +59,7 @@ export class HeaderComponent implements OnInit {
   loginUser(): void{
     let privateUserArr = [];
     this.isInvalidUser = false;
+    this.isUserLoggedIn = false;
     this.loginService.getPrivateUsers().subscribe((userData: Array<UserDetails>) => {
       privateUserArr = userData;
       const isPrivateUser = privateUserArr.findIndex(elem => {
@@ -62,6 +68,7 @@ export class HeaderComponent implements OnInit {
       });
       if (isPrivateUser >= 0){
         this.modalService.dismissAll();
+        this.isUserLoggedIn = true;
         this.loggedInUser = userData[isPrivateUser];
       } else {
         this.isInvalidUser = true;
@@ -71,7 +78,14 @@ export class HeaderComponent implements OnInit {
   }
   closeLoginModal(): void {
     this.isInvalidUser = false;
+    this.isUserLoggedIn = false;
     this.loginForm.reset();
     this.modalService.dismissAll();
+  }
+  logout(): void {
+    this.isInvalidUser = false;
+    this.isUserLoggedIn = false;
+    this.loginForm.reset();
+    this.loggedInUser = null;
   }
 }

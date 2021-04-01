@@ -1,11 +1,19 @@
 .back-image {
-    background-image: url(../../assets/images/StudioLot_TeamDisney_7-web.jpeg);
     background-size: cover;
-    
+    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url(../../assets/images/StudioLot_TeamDisney_7-web.jpeg);
+  
 }
 
 .main {
     width: 100%;
     height: 100vh;
     margin-top: -80px;
+}
+.home-header{
+    position: absolute;
+    top: 50%;
+    left: 34%;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
 }

@@ -1,11 +1,11 @@
-<div class="header-wrapper">
+<div class="header-wrapper" [ngClass]="{'header-background':!isHometUrl}">
     <div class=" ">
        <div class="logo">
         <img src="../../../assets/icons/monster-color.png"/>
         <div>THE MEDIA COMPANY</div>
        </div>
-        <div class="user">
-          <div class="user-details" *ngIf="loggedInUser">Hi {{loggedInUser.username}},</div>
+        <div class="user" *ngIf="loggedInUser">
+          <div class="user-details" >Hi {{loggedInUser.username}},</div>
       </div>
     </div>
   
@@ -20,7 +20,8 @@
           <a ngbNavLink [routerLink]="['/about']" routerLinkActive="router-link-active" >About Us</a>
          </li>
          <li >
-            <button type="button" class="btn btn-primary" (click)="open(content)">Sign In</button>
+            <button *ngIf="!isUserLoggedIn"type="button" class="btn btn-primary" (click)="open(content)">Sign In</button>
+            <button *ngIf="isUserLoggedIn" type="button" class="btn btn-primary" (click)="logout()">Log Out</button>
            </li>
       </ul>
 </div>
