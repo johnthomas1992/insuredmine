@@ -20,23 +20,27 @@ export class HeaderComponent implements OnInit {
     private modalService: NgbModal,
     private loginService: LoginService,
     private router: Router) { }
+
     isInvalidUser = false;
-    active =1;
-  closeResult = '';
-  matcher = new LoginErrorStateMatcher();
-  loginForm = new FormGroup({
-    userid : new FormControl('', [Validators.required]),
-    password : new FormControl('', [Validators.required]),
-  });
-  ngOnInit(): void {
-  }
-  open(content: any): void{
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
+    loggedInUser!: UserDetails;
+    active = 1;
+    closeResult = '';
+    matcher = new LoginErrorStateMatcher();
+
+    loginForm = new FormGroup({
+        userid : new FormControl('', [Validators.required]),
+        password : new FormControl('', [Validators.required]),
+      });
+
+      ngOnInit(): void {}
+
+      open(content: any): void{
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -57,13 +61,17 @@ export class HeaderComponent implements OnInit {
         elem.password === this.loginForm.controls.password.value;
       });
       if (isPrivateUser >= 0){
-        const path = '';
         this.modalService.dismissAll();
-        this.router.navigate(['gallery']);
+        this.loggedInUser = userData[isPrivateUser];
       } else {
         this.isInvalidUser = true;
         this.loginForm.reset();
       }
     });
+  }
+  closeLoginModal(): void {
+    this.isInvalidUser = false;
+    this.loginForm.reset();
+    this.modalService.dismissAll();
   }
 }

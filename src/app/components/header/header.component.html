@@ -1,14 +1,19 @@
 <div class="header-wrapper">
-    <div class="logo ">
+    <div class=" ">
+       <div class="logo">
         <img src="../../../assets/icons/monster-color.png"/>
-        <span>THE MEDIA COMPANY</span>
+        <div>THE MEDIA COMPANY</div>
+       </div>
+        <div class="user">
+          <div class="user-details" *ngIf="loggedInUser">Hi {{loggedInUser.username}},</div>
+      </div>
     </div>
-
+  
     <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
         <li [ngbNavItem]="1">
           <a ngbNavLink [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
         </li>
-        <li [ngbNavItem]="2">
+        <li [ngbNavItem]="2" *ngIf="loggedInUser">
           <a ngbNavLink [routerLink]="['/gallery']" routerLinkActive="router-link-active" >Gallery</a>
         </li>
         <li [ngbNavItem]="3">
@@ -22,8 +27,8 @@
   
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Welcome back, Login In</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <div class="modal-title" id="modal-basic-title">Welcome back, Sign In</div>
+      <button type="button" class="close" aria-label="Close" (click)="closeLoginModal()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>

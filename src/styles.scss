@@ -53,6 +53,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: 0 auto;
     border-top: none;
   }
+  .modal-header{
+    background: #007bffd1;
+    color: #fff;
+    .modal-title {
+      font-size: 1rem;
+    }
+  }
   .wrong-credentials{
     background: #c5262673;
     border: 1px solid red;
