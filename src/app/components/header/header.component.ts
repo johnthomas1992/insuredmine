@@ -62,14 +62,14 @@ export class HeaderComponent implements OnInit {
     this.isUserLoggedIn = false;
     this.loginService.getPrivateUsers().subscribe((userData: Array<UserDetails>) => {
       privateUserArr = userData;
-      const isPrivateUser = privateUserArr.findIndex(elem => {
+      const privateUserIndex = privateUserArr.findIndex(elem => {
         return elem.userid === this.loginForm.controls.userid.value &&
         elem.password === this.loginForm.controls.password.value;
       });
-      if (isPrivateUser >= 0){
+      if (privateUserIndex !== -1){
         this.modalService.dismissAll();
         this.isUserLoggedIn = true;
-        this.loggedInUser = userData[isPrivateUser];
+        this.loggedInUser = userData[privateUserIndex];
       } else {
         this.isInvalidUser = true;
         this.loginForm.reset();

@@ -8,41 +8,42 @@
     height: 90%;
 }
 
-.section-meals {
+.section-images {
     padding: 0;
 }
 
-.meals-showcase {
+.images-showcase {
     list-style: none;
     width: 100%;
     padding: 0;
+    li 
+    {
+        display: block;
+        float: left;
+        width: 25%;
+    }
 }
 
-.meals-showcase li {
-    display: block;
-    float: left;
-    width: 25%;
-}
-
-.meal-photos {
+.images-photos {
     width: 100%;
     margin: 0;
     overflow: hidden;
     background-color: #000;
+    img {
+        opacity: 0.7;
+        width: 100%;
+        height: auto;
+        transform: scale(1.15);
+        transition: transform 0.5s, opacity 0.5s;
+        &:hover {
+            opacity: 1;
+            transform: scale(1.04);
+        }
+    }
+   
 }
 
-.meal-photos img {
-    opacity: 0.7;
-    width: 100%;
-    height: auto;
-    transform: scale(1.15);
-    transition: transform 0.5s, opacity 0.5s;
-}
-
-.meal-photos img:hover {
-    opacity: 1;
-    transform: scale(1.04);
-}
+ 
 .gallery-wrapper{
   
     margin-top: 85px;

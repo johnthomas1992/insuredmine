@@ -8,7 +8,6 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { AboutComponent } from './about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
@@ -26,7 +25,6 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
     CarouselComponent
   ],
   imports: [

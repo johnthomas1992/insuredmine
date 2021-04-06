@@ -7,4 +7,3 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
       return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
     }
   }
-  
